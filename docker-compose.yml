@@ -1,21 +1,31 @@
-version: "3"
-services:
-  react:
-    build:
-      context: ./
-      dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
-    volumes:
-      - /usr/app/node_modules
-      - ./:/usr/app
-    stdin_open: true
+#version: "3"
+#services:
+#  react:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile.dev
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - /usr/app/node_modules
+#      - ./:/usr/app
+#    stdin_open: true
+#
+#  tests:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.dev
+#    volumes:
+#      - /usr/app/node_modules
+#      - ./:/usr/app
+#    command: ["npm", "run", "test"]
 
-  tests:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /usr/app/node_modules
-      - ./:/usr/app
-    command: ["npm", "run", "test"]
+version: "2.4"
+
+services:
+  nginx:
+    restart: always
+    image: 5hdumat/docker-react-app
+    ports:
+      - "80:80"
+    mem_limit: 128m
